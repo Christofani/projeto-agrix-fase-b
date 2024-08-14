@@ -98,7 +98,7 @@ Neste projeto, verificamos se você é capaz de:
 
 6. Crie um `Pull Request` _(PR)_
 
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/java-0x-projeto-final-agrix-fase-b/pulls).
+- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/java-036-java-projeto-final-agrix-fase-b/pulls).
     - Clique no botão verde _"New pull request"_.
     - Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**.
 - Coloque um título para o seu _Pull Request_.
@@ -110,7 +110,7 @@ Neste projeto, verificamos se você é capaz de:
 
  <img width="1335" alt="Exemplo de pull request" src="https://user-images.githubusercontent.com/42356399/166255109-b95e6eb4-2503-45e5-8fb3-cf7caa0436e5.png">
 
-- Volte até a [página de _Pull  Requests_ do repositório](https://github.com/tryber/java-0x-projeto-final-agrix-fase-b/pulls) e confira
+- Volte até a [página de _Pull  Requests_ do repositório](https://github.com/tryber/java-036-java-projeto-final-agrix-fase-b/pulls) e confira
   que o seu _Pull Request_ está criado.
 
 </details>
@@ -711,7 +711,7 @@ Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência 
 formulário.
 **Leva menos de 3 minutos!**
 
-[Formulário de avaliação do projeto](https://be-trybe.typeform.com/to/ZTeR4IbH)
+[Formulário de avaliação do projeto](https://be-trybe.typeform.com/to/ZTeR4IbH#cohort_hidden=CH36-JAVA&template=betrybe/java-0x-projeto-final-agrix-fase-b)
 
 </details>
 
