@@ -1,12 +1,17 @@
 package com.betrybe.agrix.ebytr.staff.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * The type Crop.
@@ -21,6 +26,10 @@ public class Crop {
 
   private String name;
   private Double plantedArea;
+
+  private LocalDate plantedDate;
+
+  private LocalDate harvestDate;
 
   @ManyToOne
   @JoinColumn(name = "farm_id")
@@ -38,9 +47,11 @@ public class Crop {
    * @param name        the name
    * @param plantedArea the planted area
    */
-  public Crop(String name, Double plantedArea) {
+  public Crop(String name, Double plantedArea, LocalDate plantedDate, LocalDate harvestDate) {
     this.name = name;
     this.plantedArea = plantedArea;
+    this.plantedDate = plantedDate;
+    this.harvestDate = harvestDate;
   }
 
   /**
@@ -113,5 +124,41 @@ public class Crop {
    */
   public void setFarm(Farm farmId) {
     this.farmId = farmId;
+  }
+
+  /**
+   * Gets planted date.
+   *
+   * @return the planted date
+   */
+  public LocalDate getPlantedDate() {
+    return plantedDate;
+  }
+
+  /**
+   * Sets planted date.
+   *
+   * @param plantedDate the planted date
+   */
+  public void setPlantedDate(LocalDate plantedDate) {
+    this.plantedDate = plantedDate;
+  }
+
+  /**
+   * Gets harvest date.
+   *
+   * @return the harvest date
+   */
+  public LocalDate getHarvestDate() {
+    return harvestDate;
+  }
+
+  /**
+   * Sets harvest date.
+   *
+   * @param harvestDate the harvest date
+   */
+  public void setHarvestDate(LocalDate harvestDate) {
+    this.harvestDate = harvestDate;
   }
 }

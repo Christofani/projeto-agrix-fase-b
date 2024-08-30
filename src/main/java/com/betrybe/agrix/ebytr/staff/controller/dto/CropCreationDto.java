@@ -1,11 +1,16 @@
 package com.betrybe.agrix.ebytr.staff.controller.dto;
 
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
+import java.time.LocalDate;
 
 /**
  * The type Crop creation dto.
  */
-public record CropCreationDto(String name, Double plantedArea) {
+public record CropCreationDto(
+    String name,
+    Double plantedArea,
+    LocalDate plantedDate,
+    LocalDate harvestDate) {
 
   /**
    * To entity crop.
@@ -13,6 +18,6 @@ public record CropCreationDto(String name, Double plantedArea) {
    * @return the crop
    */
   public Crop toEntity() {
-    return new Crop(name, plantedArea);
+    return new Crop(name, plantedArea, plantedDate, harvestDate);
   }
 }

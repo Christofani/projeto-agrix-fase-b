@@ -1,19 +1,25 @@
 package com.betrybe.agrix.ebytr.staff.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * The type Farm.
  */
 @Entity
 @Table(name = "farm")
+@EntityListeners(AuditingEntityListener.class)
 public class Farm {
 
   @Id
@@ -22,6 +28,7 @@ public class Farm {
 
   private String name;
   private Double size;
+
 
   @OneToMany(mappedBy = "farmId")
   private List<Crop> crops;
@@ -114,4 +121,6 @@ public class Farm {
   public void setCrops(List<Crop> farms) {
     this.crops = farms;
   }
+
+
 }
