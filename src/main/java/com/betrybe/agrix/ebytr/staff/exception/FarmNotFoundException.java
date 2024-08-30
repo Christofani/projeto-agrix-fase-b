@@ -1,4 +1,4 @@
-package com.betrybe.agrix.ebytr.staff.service.exception;
+package com.betrybe.agrix.ebytr.staff.exception;
 
 /**
  * The type Farm not found exception.

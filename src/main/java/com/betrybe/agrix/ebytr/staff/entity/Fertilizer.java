@@ -1,55 +1,50 @@
 package com.betrybe.agrix.ebytr.staff.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
- * The type Farm.
+ * The type Fertilizer.
  */
 @Entity
-@Table(name = "farm")
-@EntityListeners(AuditingEntityListener.class)
-public class Farm {
+@Table(name = "fertilizer")
+public class Fertilizer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
-  private Double size;
+  private String brand;
+  private String composition;
 
-
-  @OneToMany(mappedBy = "farmId", cascade = CascadeType.ALL)
+  @ManyToMany(mappedBy = "fertilizers")
   private List<Crop> crops = new ArrayList<>();
 
   /**
-   * Instantiates a new Farm.
+   * Instantiates a new Fertilizer.
    */
-  public Farm() {
+  public Fertilizer() {
   }
 
   /**
-   * Instantiates a new Farm.
+   * Instantiates a new Fertilizer.
    *
-   * @param name the name
-   * @param size the size
+   * @param name        the name
+   * @param brand       the brand
+   * @param composition the composition
    */
-  public Farm(String name, Double size) {
+  public Fertilizer(String name, String brand, String composition) {
     this.name = name;
-    this.size = size;
+    this.brand = brand;
+    this.composition = composition;
   }
 
   /**
@@ -89,21 +84,39 @@ public class Farm {
   }
 
   /**
-   * Gets size.
+   * Gets brand.
    *
-   * @return the size
+   * @return the brand
    */
-  public Double getSize() {
-    return size;
+  public String getBrand() {
+    return brand;
   }
 
   /**
-   * Sets size.
+   * Sets brand.
    *
-   * @param size the size
+   * @param brand the brand
    */
-  public void setSize(Double size) {
-    this.size = size;
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+  /**
+   * Gets composition.
+   *
+   * @return the composition
+   */
+  public String getComposition() {
+    return composition;
+  }
+
+  /**
+   * Sets composition.
+   *
+   * @param composition the composition
+   */
+  public void setComposition(String composition) {
+    this.composition = composition;
   }
 
   /**
@@ -118,11 +131,9 @@ public class Farm {
   /**
    * Sets crops.
    *
-   * @param farms the farms
+   * @param crops the crops
    */
-  public void setCrops(List<Crop> farms) {
-    this.crops = farms;
+  public void setCrops(List<Crop> crops) {
+    this.crops = crops;
   }
-
-
 }

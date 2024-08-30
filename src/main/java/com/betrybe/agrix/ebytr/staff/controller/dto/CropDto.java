@@ -2,6 +2,7 @@ package com.betrybe.agrix.ebytr.staff.controller.dto;
 
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * The type Crop dto.
@@ -13,6 +14,7 @@ public record CropDto(
     LocalDate plantedDate,
     LocalDate harvestDate,
     Long farmId
+
 ) {
 
   /**

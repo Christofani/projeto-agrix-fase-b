@@ -1,6 +1,6 @@
 package com.betrybe.agrix.ebytr.staff.advice;
 
-import com.betrybe.agrix.ebytr.staff.service.exception.NotFoundException;
+import com.betrybe.agrix.ebytr.staff.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
