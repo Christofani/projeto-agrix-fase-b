@@ -20,16 +20,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+/**
+ * The type Person service test.
+ */
 @SpringBootTest
 @DisplayName("Testando camada service da entidade Person.")
 public class PersonServiceTest {
 
+  /**
+   * The Person service.
+   */
   @Autowired
   PersonService personService;
 
+  /**
+   * The Person repository.
+   */
   @MockBean
   PersonRepository personRepository;
 
+  /**
+   * Test creation person.
+   */
   @Test
   @DisplayName("Test - Criação de um novo Person")
   public void testCreationPerson() {
@@ -51,6 +63,9 @@ public class PersonServiceTest {
     assertEquals(Role.USER, createdPerson.getRole());
   }
 
+  /**
+   * Test person by id.
+   */
   @Test
   @DisplayName("Test - Buscando Person por Id")
   public void testPersonById() {
@@ -73,6 +88,9 @@ public class PersonServiceTest {
     assertEquals(Role.USER, returnedPerson.getRole());
   }
 
+  /**
+   * Test person by username.
+   */
   @Test
   @DisplayName("Test - Buscando Person por Username")
   public void testPersonByUsername() {
@@ -95,6 +113,9 @@ public class PersonServiceTest {
     assertEquals(Role.USER, returnedPerson.getRole());
   }
 
+  /**
+   * Test person not found.
+   */
   @Test
   @DisplayName("Test - Lança uma exceção caso não exista um Person buscando por id")
   public void testPersonNotFound() {
@@ -106,6 +127,9 @@ public class PersonServiceTest {
     Mockito.verify(personRepository).findById(eq(5698L));
   }
 
+  /**
+   * Test person not found by username.
+   */
   @Test
   @DisplayName("Test - Lança uma exceção caso não exista um Person buscando por Username")
   public void testPersonNotFoundByUsername() {
