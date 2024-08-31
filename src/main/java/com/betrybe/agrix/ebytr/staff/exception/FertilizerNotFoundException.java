@@ -9,6 +9,6 @@ public class FertilizerNotFoundException extends NotFoundException {
    * Instantiates a new Fertilizer not found exception.
    */
   public FertilizerNotFoundException() {
-    super("Fertilizante não encontrado");
+    super("Fertilizante não encontrado!");
   }
 }

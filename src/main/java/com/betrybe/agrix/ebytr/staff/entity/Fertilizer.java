@@ -1,6 +1,7 @@
 package com.betrybe.agrix.ebytr.staff.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +26,9 @@ public class Fertilizer {
   private String brand;
   private String composition;
 
+  @JsonIgnore
   @ManyToMany(mappedBy = "fertilizers")
-  private List<Crop> crops = new ArrayList<>();
+  private List<Crop> crops;
 
   /**
    * Instantiates a new Fertilizer.
