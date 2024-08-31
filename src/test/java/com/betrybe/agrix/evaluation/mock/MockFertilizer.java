@@ -9,7 +9,7 @@ public class MockFertilizer extends HashMap<String, Object> {
     super();
   }
 
-  public <K, V> MockFertilizer(Map<K,V> source) {
+  public <K, V> MockFertilizer(Map<K, V> source) {
     super((Map<String, Object>) source);
   }
 

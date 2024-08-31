@@ -39,7 +39,7 @@ public class CoverageValidationTest {
     );
 
     log.info(
-            String.format("Cobertura de código em %.1f%% (mínimo de %.1f%%)", actual, minExpected)
+        String.format("Cobertura de código em %.1f%% (mínimo de %.1f%%)", actual, minExpected)
     );
   }
 }

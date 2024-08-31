@@ -24,6 +24,7 @@ public class CodeCoverageRunner {
     this.buildDir = buildDir;
     this.profileName = profileName;
   }
+
   public double run() {
     String reportPath = String.format("%s/site/jacoco/jacoco.xml", buildDir);
     String outFile = String.format("%s.log", buildDir);
@@ -36,7 +37,8 @@ public class CodeCoverageRunner {
          */
         "unset MAVEN_CONFIG &&",
         "./mvnw clean test jacoco:report",  // Run tests
-        "-DuseTestsForCoverage=true",  // Include evaluation and solution tests, but exclude coverage test (like this one) or other unrelated
+        "-DuseTestsForCoverage=true",
+        // Include evaluation and solution tests, but exclude coverage test (like this one) or other unrelated
         "-DcoverageBuildDir=" + buildDir,  // Use different dir to build
         profileName != null ? "-D%s=true".formatted(profileName) : "",
         "--log-file " + outFile, // Save output to file

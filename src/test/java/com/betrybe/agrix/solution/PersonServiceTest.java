@@ -1,10 +1,5 @@
 package com.betrybe.agrix.solution;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 import com.betrybe.agrix.ebytr.staff.entity.Person;
@@ -13,18 +8,22 @@ import com.betrybe.agrix.ebytr.staff.repository.PersonRepository;
 import com.betrybe.agrix.ebytr.staff.security.Role;
 import com.betrybe.agrix.ebytr.staff.service.PersonService;
 import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * The type Person service test.
  */
 @SpringBootTest
 @DisplayName("Testando camada service da entidade Person.")
+@ActiveProfiles("test")
 public class PersonServiceTest {
 
   /**
@@ -51,16 +50,16 @@ public class PersonServiceTest {
     person.setPassword("Rodrigo123");
     person.setRole(Role.USER);
 
-    when(personRepository.save(any(Person.class))).thenReturn(person);
+    when(personRepository.save(ArgumentMatchers.any(Person.class))).thenReturn(person);
 
     Person createdPerson = personService.create(person);
 
     Mockito.verify(personRepository).save(person);
 
-    assertNotNull(createdPerson);
-    assertEquals("Christofani", createdPerson.getUsername());
-    assertEquals("Rodrigo123", createdPerson.getPassword());
-    assertEquals(Role.USER, createdPerson.getRole());
+    Assertions.assertNotNull(createdPerson);
+    Assertions.assertEquals("Christofani", createdPerson.getUsername());
+    Assertions.assertEquals("Rodrigo123", createdPerson.getPassword());
+    Assertions.assertEquals(Role.USER, createdPerson.getRole());
   }
 
   /**
@@ -75,17 +74,17 @@ public class PersonServiceTest {
     person.setPassword("Rodrigo123");
     person.setRole(Role.USER);
 
-    Mockito.when(personRepository.findById(eq(1L)))
+    when(personRepository.findById(ArgumentMatchers.eq(1L)))
         .thenReturn(Optional.of(person));
 
     Person returnedPerson = personService.getPersonById(1L);
 
-    Mockito.verify(personRepository).findById(eq(1L));
+    Mockito.verify(personRepository).findById(ArgumentMatchers.eq(1L));
 
-    assertEquals(returnedPerson.getId(), person.getId());
-    assertEquals(returnedPerson.getUsername(), person.getUsername());
-    assertEquals(returnedPerson.getPassword(), person.getPassword());
-    assertEquals(Role.USER, returnedPerson.getRole());
+    Assertions.assertEquals(returnedPerson.getId(), person.getId());
+    Assertions.assertEquals(returnedPerson.getUsername(), person.getUsername());
+    Assertions.assertEquals(returnedPerson.getPassword(), person.getPassword());
+    Assertions.assertEquals(Role.USER, returnedPerson.getRole());
   }
 
   /**
@@ -100,17 +99,17 @@ public class PersonServiceTest {
     person.setPassword("Rodrigo123");
     person.setRole(Role.USER);
 
-    Mockito.when(personRepository.findByUsername(eq(person.getUsername())))
+    when(personRepository.findByUsername(ArgumentMatchers.eq(person.getUsername())))
         .thenReturn(Optional.of(person));
 
     Person returnedPerson = personService.getPersonByUsername(person.getUsername());
 
-    Mockito.verify(personRepository).findByUsername(eq(person.getUsername()));
+    Mockito.verify(personRepository).findByUsername(ArgumentMatchers.eq(person.getUsername()));
 
-    assertEquals(returnedPerson.getId(), person.getId());
-    assertEquals(returnedPerson.getUsername(), person.getUsername());
-    assertEquals(returnedPerson.getPassword(), person.getPassword());
-    assertEquals(Role.USER, returnedPerson.getRole());
+    Assertions.assertEquals(returnedPerson.getId(), person.getId());
+    Assertions.assertEquals(returnedPerson.getUsername(), person.getUsername());
+    Assertions.assertEquals(returnedPerson.getPassword(), person.getPassword());
+    Assertions.assertEquals(Role.USER, returnedPerson.getRole());
   }
 
   /**
@@ -119,12 +118,13 @@ public class PersonServiceTest {
   @Test
   @DisplayName("Test - Lança uma exceção caso não exista um Person buscando por id")
   public void testPersonNotFound() {
-    Mockito.when(personRepository.findById(any()))
+    when(personRepository.findById(ArgumentMatchers.any()))
         .thenReturn(Optional.empty());
 
-    assertThrows(PersonNotFoundException.class, () -> personService.getPersonById(5698L));
+    Assertions.assertThrows(PersonNotFoundException.class,
+        () -> personService.getPersonById(5698L));
 
-    Mockito.verify(personRepository).findById(eq(5698L));
+    Mockito.verify(personRepository).findById(ArgumentMatchers.eq(5698L));
   }
 
   /**
@@ -133,12 +133,12 @@ public class PersonServiceTest {
   @Test
   @DisplayName("Test - Lança uma exceção caso não exista um Person buscando por Username")
   public void testPersonNotFoundByUsername() {
-    Mockito.when(personRepository.findByUsername(any()))
+    when(personRepository.findByUsername(ArgumentMatchers.any()))
         .thenReturn(Optional.empty());
 
-    assertThrows(PersonNotFoundException.class,
+    Assertions.assertThrows(PersonNotFoundException.class,
         () -> personService.getPersonByUsername("Joãozinho"));
 
-    Mockito.verify(personRepository).findByUsername(eq("Joãozinho"));
+    Mockito.verify(personRepository).findByUsername(ArgumentMatchers.eq("Joãozinho"));
   }
 }

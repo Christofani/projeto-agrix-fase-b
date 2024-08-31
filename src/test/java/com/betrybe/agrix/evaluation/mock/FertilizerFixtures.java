@@ -3,6 +3,7 @@ package com.betrybe.agrix.evaluation.mock;
 import java.util.Map;
 
 public class FertilizerFixtures {
+
   public final static MockFertilizer fertilizer1 = new MockFertilizer(Map.of(
       "name", "Compostagem",
       "brand", "Feito em casa",
