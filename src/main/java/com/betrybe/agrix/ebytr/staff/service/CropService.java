@@ -2,8 +2,10 @@ package com.betrybe.agrix.ebytr.staff.service;
 
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.betrybe.agrix.ebytr.staff.entity.Farm;
+import com.betrybe.agrix.ebytr.staff.entity.Fertilizer;
 import com.betrybe.agrix.ebytr.staff.exception.CropNotFoundException;
 import com.betrybe.agrix.ebytr.staff.exception.FarmNotFoundException;
+import com.betrybe.agrix.ebytr.staff.exception.FertilizerNotFoundException;
 import com.betrybe.agrix.ebytr.staff.repository.CropRepository;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,17 +21,25 @@ public class CropService {
 
   private final CropRepository cropRepository;
   private final FarmService farmService;
+  private final FertilizerService fertilizerService;
+
 
   /**
    * Instantiates a new Crop service.
    *
-   * @param cropRepository the crop repository
-   * @param farmService    the farm service
+   * @param cropRepository    the crop repository
+   * @param farmService       the farm service
+   * @param fertilizerService the fertilizer service
    */
   @Autowired
-  public CropService(CropRepository cropRepository, FarmService farmService) {
+  public CropService(
+          CropRepository cropRepository,
+          FarmService farmService,
+          FertilizerService fertilizerService
+  ) {
     this.cropRepository = cropRepository;
     this.farmService = farmService;
+    this.fertilizerService = fertilizerService;
   }
 
   /**
@@ -50,7 +60,22 @@ public class CropService {
    */
   public Crop findById(Long id) throws CropNotFoundException {
     return cropRepository.findById(id)
-        .orElseThrow(CropNotFoundException::new);
+            .orElseThrow(CropNotFoundException::new);
+  }
+
+  /**
+   * Associate fertilizer.
+   *
+   * @param crop       the crop
+   * @param fertilizer the fertilizer
+   * @throws FertilizerNotFoundException the fertilizer not found exception
+   */
+  public void associateFertilizer(
+          Crop crop, Fertilizer fertilizer
+  ) throws FertilizerNotFoundException {
+    crop.getFertilizers().add(fertilizer);
+
+    cropRepository.save(crop);
   }
 
   /**
@@ -64,8 +89,8 @@ public class CropService {
     Farm farm = farmService.findById(farmId);
 
     return findAll().stream()
-        .filter(crop -> crop.getFarm().equals(farm))
-        .collect(Collectors.toList());
+            .filter(crop -> crop.getFarm().equals(farm))
+            .collect(Collectors.toList());
   }
 
   /**
